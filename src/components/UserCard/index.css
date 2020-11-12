@@ -1,0 +1,29 @@
+.user-card-small {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  margin: 2px;
+  color: #999999;
+  font-size: 13px;
+  line-height: 15px;
+}
+.user-card {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin: 10px;
+}
+.user-card-small > img {
+  height: 25px;
+  width: 25px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.user-card > img {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 10px;
+}

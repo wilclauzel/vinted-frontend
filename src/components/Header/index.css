@@ -1,0 +1,49 @@
+header {
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  background-color: white;
+}
+header > div {
+  border-bottom: 1px solid #999999;
+}
+header > div:last-child > div > div,
+header > div:first-child > div > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header > div:first-child > div > div {
+  height: 55px;
+}
+header > div:last-child > div > div {
+  height: 45px;
+}
+.header-button-sale,
+.header-buttons-connect {
+  font-size: 12px;
+  line-height: 16px;
+  border-radius: 2px;
+}
+.header-buttons-connect {
+  color: #09b1ba;
+  border: 1px solid #09b1ba;
+}
+.header-buttons-connect > button {
+  color: #09b1ba;
+  background-color: white;
+}
+.header-button-sale {
+  color: white;
+  background-color: #09b1ba;
+}
+header input {
+  min-width: 60%;
+  height: 35px;
+  background-color: #f5f6f7;
+  border: none;
+  border-radius: 2px;
+  font-size: 13px;
+  line-height: 16.3px;
+  color: #999999;
+}

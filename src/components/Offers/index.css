@@ -1,0 +1,8 @@
+.offers {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: space-between;
+  flex-wrap: wrap;
+  /* border: 1px solid red; */
+}

@@ -1,0 +1,65 @@
+.login,
+.signup {
+  margin-top: 102px;
+  width: 350px;
+  height: 450px;
+  background-color: white;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.login > h2,
+.signup > h2 {
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.login > form,
+.signup > form {
+  width: 100%;
+  margin: 0;
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.login > form button,
+.login > form input,
+.signup > form button,
+.signup > form input {
+  width: 275px;
+  height: 45px;
+}
+.login > form input,
+.signup > form input {
+  border-style: none;
+  margin: 15px 0;
+  border-bottom: 1px solid rgb(153, 44, 44);
+}
+.login > form button,
+.signup > form button {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 400;
+  color: white;
+  background-color: #09b1ba;
+  border-radius: 5px;
+}
+.login > p,
+.signup > p {
+  color: #09b1ba;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+}
+
+.login a,
+.signup a {
+  text-decoration: none;
+  color: #09b1ba;
+}

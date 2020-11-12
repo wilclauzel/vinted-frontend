@@ -3,7 +3,10 @@ import axios from "axios";
 import OfferCard from "../OfferCard";
 import "./index.css";
 
+// TODO : regrouper les composants par domaine
+
 const getOffers = async (setOffers, setIsLoading) => {
+  // TODO faire try/catch
   const response = await axios.get(
     "https://lereacteur-vinted-api.herokuapp.com/offers"
   );

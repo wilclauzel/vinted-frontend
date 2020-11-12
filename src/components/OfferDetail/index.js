@@ -5,7 +5,7 @@ import "./index.css";
 
 const getOffers = async (id, setOffer, setIsLoading) => {
   const url = "https://lereacteur-vinted-api.herokuapp.com/offer/" + id;
-
+  // TODO faire try/catch
   const response = await axios.get(url);
   setOffer(response.data);
   setIsLoading(false);
@@ -35,6 +35,7 @@ const OfferDetail = ({ id }) => {
                 currency: "EUR",
               })}
             </p>
+            {/* Todo faire un map avec keys */}
             <div className="offerdetail-feature">
               <span>MARQUE</span>
               <span>{offer.product_details[0].MARQUE}</span>

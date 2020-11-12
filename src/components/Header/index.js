@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./index.css";
-const Header = () => {
+const Header = ({ token, setUserToken }) => {
   return (
     <header>
       <div>
@@ -18,8 +18,25 @@ const Header = () => {
             </Link>
             <input type="text" placeholder="Rechercher des articles" />
             <div className="header-buttons-connect">
-              <button>S'inscrire</button>
-              <button>Se connecter</button>
+              {token ? (
+                <button
+                  onClick={() => {
+                    setUserToken(null);
+                  }}
+                >
+                  Se Déconnecter
+                </button>
+              ) : (
+                <>
+                  <Link to="/signup">
+                    <div>S'inscrire</div>
+                  </Link>
+
+                  <Link to="/login">
+                    <div>Se connecter</div>
+                  </Link>
+                </>
+              )}
             </div>
             <button className="header-button-sale">Vends tes articles</button>
           </div>

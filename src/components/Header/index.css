@@ -19,26 +19,50 @@ header > div:first-child > div > div {
 header > div:last-child > div > div {
   height: 45px;
 }
+.header-buttons-connect {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .header-button-sale,
-.header-buttons-connect {
+.header-buttons-connect > button,
+.header-buttons-connect > a > div {
+  width: 120px;
+  height: 36px;
+  box-sizing: border-box;
   font-size: 12px;
-  line-height: 16px;
-  border-radius: 2px;
-}
-.header-buttons-connect {
-  color: #09b1ba;
-  border: 1px solid #09b1ba;
-}
-.header-buttons-connect > button {
-  color: #09b1ba;
-  background-color: white;
+  line-height: 14px;
+  font-weight: 600;
+  padding: 0 5px;
+  border-radius: 4px;
 }
 .header-button-sale {
   color: white;
   background-color: #09b1ba;
 }
+.header-buttons-connect > a > div {
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #09b1ba;
+}
+.header-buttons-connect > a {
+  text-decoration: none;
+  color: #09b1ba;
+}
+.header-buttons-connect > button {
+  background-color: #c41c8c;
+  color: white;
+  border: none;
+}
+/* .header-buttons-connect > div,
+.header-button-sale {
+  color: white;
+  background-color: #09b1ba;
+} */
 header input {
-  min-width: 60%;
+  min-width: 50%;
   height: 35px;
   background-color: #f5f6f7;
   border: none;

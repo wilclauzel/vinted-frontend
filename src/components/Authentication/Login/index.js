@@ -1,18 +1,29 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 import "../index.css";
 
-const handleLogin = async (event, setUserToken, history, email, password) => {
+const handleLogin = async (
+  event,
+  setModal,
+  setUserToken,
+  history,
+  email,
+  password
+) => {
   try {
     event.preventDefault();
     const userLogin = { email, password };
-    const response = await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/user/login",
-      userLogin
-    );
+    const url = Cookies.get("BackUrl") + "user/login";
+    const response = await axios.post(url, userLogin);
+    if (!response.data.token) {
+      alert("Votre authentification est incorrecte");
+    }
+    // In all cases, set updates and go home
     setUserToken(response.data.token);
+    setModal(null);
     history.push("/");
   } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {
@@ -26,7 +37,7 @@ const handleLogin = async (event, setUserToken, history, email, password) => {
   }
 };
 
-const Login = ({ setUserToken }) => {
+const Login = ({ setUserToken, setModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -36,7 +47,7 @@ const Login = ({ setUserToken }) => {
       <h2>Se connecter</h2>
       <form
         onSubmit={(event) => {
-          handleLogin(event, setUserToken, history, email, password);
+          handleLogin(event, setModal, setUserToken, history, email, password);
         }}
       >
         <input
@@ -58,7 +69,14 @@ const Login = ({ setUserToken }) => {
         <button type="submit">Se connecter</button>
       </form>
       <p>
-        Pas encore de compte ? <Link to="/signup">Inscris-toi !</Link>
+        Pas encore de compte ?
+        <span
+          onClick={() => {
+            setModal("Signup");
+          }}
+        >
+          Inscris-toi !
+        </span>
       </p>
     </div>
   );

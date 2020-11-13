@@ -40,21 +40,30 @@ header > div:last-child > div > div {
   color: white;
   background-color: #09b1ba;
 }
-.header-buttons-connect > a > div {
+/* .header-buttons-connect > a > div {
   margin: 0 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid #09b1ba;
-}
-.header-buttons-connect > a {
+} */
+/* .header-buttons-connect > a {
   text-decoration: none;
   color: #09b1ba;
-}
+} */
+
 .header-buttons-connect > button {
+  border: none;
+}
+.header-buttons-connect .deconnect {
   background-color: #c41c8c;
   color: white;
-  border: none;
+}
+.header-buttons-connect .connect {
+  margin: 0 10px;
+  background-color: white;
+  color: #09b1ba;
+  border: 1px solid #09b1ba;
 }
 /* .header-buttons-connect > div,
 .header-button-sale {

@@ -58,7 +58,9 @@
 .offerdetail-data > div:last-of-type > p:last-of-type {
   color: #999999;
   width: 300px;
+  max-height: 130px;
   word-wrap: break-word;
+  overflow: hidden;
 }
 
 .offerdetail-data button {

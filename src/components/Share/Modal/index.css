@@ -1,0 +1,23 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.modal .displayed {
+  z-index: 10;
+  display: flex;
+}
+.modal .hidden {
+  z-index: -10;
+  display: none;
+  /* border: 1px solid red; */
+}
+.modal > div:first-of-type {
+  border-bottom: 1px solid #999999;
+}

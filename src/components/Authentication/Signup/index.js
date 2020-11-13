@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 import "../index.css";
 
 const handleSignup = async (
   event,
+  setModal,
   setUserToken,
   history,
   username,
@@ -15,13 +17,17 @@ const handleSignup = async (
   try {
     event.preventDefault();
     const user = { username, email, password };
-    const response = await axios.post(
-      "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-      user
-    );
-    setUserToken(response.data);
+    const url = Cookies.get("BackUrl") + "user/signup";
+    const response = await axios.post(url, user);
+    if (!response.data.token) {
+      alert("Votre authentification est incorrecte");
+    }
+    // In all cases, set updates and go home
+    setUserToken(response.data.token);
+    setModal(null);
     history.push("/");
   } catch (error) {
+    console.log(error.message);
     if (error.response && error.response.data && error.response.data.message) {
       alert(
         "Votre inscription est bloquée pour la raison suivante : \n\n" +
@@ -33,7 +39,7 @@ const handleSignup = async (
   }
 };
 
-const Signup = ({ setUserToken }) => {
+const Signup = ({ setModal, setUserToken }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +50,15 @@ const Signup = ({ setUserToken }) => {
       <h2>S'inscrire</h2>
       <form
         onSubmit={(event) => {
-          handleSignup(event, setUserToken, history, username, email, password);
+          handleSignup(
+            event,
+            setModal,
+            setUserToken,
+            history,
+            username,
+            email,
+            password
+          );
         }}
       >
         <input
@@ -77,7 +91,14 @@ const Signup = ({ setUserToken }) => {
         <button type="submit">S'inscrire</button>
       </form>
       <p>
-        Tu as déjà un compte ? <Link to="/login">Connecte-toi !</Link>
+        Tu as déjà un compte ?
+        <span
+          onClick={() => {
+            setModal("Login");
+          }}
+        >
+          Connecte-toi !
+        </span>
       </p>
     </div>
   );

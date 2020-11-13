@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import axios from "axios";
-import UserCard from "../UserCard";
+import UserCard from "../../UserCard";
 import "./index.css";
 
 const getOffers = async (id, setOffer, setIsLoading) => {
-  const url = "https://lereacteur-vinted-api.herokuapp.com/offer/" + id;
-  // TODO faire try/catch
-  const response = await axios.get(url);
-  setOffer(response.data);
-  setIsLoading(false);
+  const url = Cookies.get("BackUrl") + "offer/" + id;
+  try {
+    const response = await axios.get(url);
+    setOffer(response.data);
+    setIsLoading(false);
+  } catch (error) {
+    console.log(error.message);
+    if (error.response && error.response.data && error.response.data.message) {
+      alert(
+        "Le chargement est impossible pour la raison suivante : \n\n" +
+          error.response.data.message
+      );
+    } else {
+      alert("Une erreur bloque le chargement des données");
+    }
+  }
 };
 
 const OfferDetail = ({ id }) => {
@@ -17,7 +29,7 @@ const OfferDetail = ({ id }) => {
 
   useEffect(() => {
     getOffers(id, setOffer, setIsLoading);
-  }, [id]); // Specifie id props to avoir error : React Hook useEffect has a missing dependency: 'xxx'
+  }, [id]); // Specify id props to avoid error : React Hook useEffect has a missing dependency: 'xxx'
 
   return isLoading ? (
     <div>Chargement encours</div>
@@ -35,30 +47,15 @@ const OfferDetail = ({ id }) => {
                 currency: "EUR",
               })}
             </p>
-            {/* Todo faire un map avec keys */}
-            <div className="offerdetail-feature">
-              <span>MARQUE</span>
-              <span>{offer.product_details[0].MARQUE}</span>
-            </div>
-            <div className="offerdetail-feature">
-              <span>TAILLE</span>
-              <span>{offer.product_details[1].TAILLE}</span>
-            </div>
-            <div className="offerdetail-feature">
-              <span>ETAT</span>
-              <span>{offer.product_details[2].ETAT}</span>
-            </div>
-            <div className="offerdetail-feature">
-              <span>COULEUR</span>
-              <span>{offer.product_details[3].COULEUR}</span>
-            </div>
-            <div className="offerdetail-feature">
-              <span>EMPLACEMENT</span>
-              <span>
-                {offer.product_details[4] &&
-                  offer.product_details[4].EMPLACEMENT}
-              </span>
-            </div>
+            {offer.product_details.map((feature, index) => {
+              const keys = Object.keys(feature);
+              return (
+                <div key={index} className="offerdetail-feature">
+                  <span>{keys[0]}</span>
+                  <span>{feature[keys[0]]}</span>
+                </div>
+              );
+            })}
           </div>
           <div className="separator"></div>
           <div>

@@ -58,8 +58,11 @@
   font-weight: 400;
 }
 
-.login a,
-.signup a {
+.login span,
+.signup span {
+  font-weight: 700;
+  margin-left: 5px;
   text-decoration: none;
   color: #09b1ba;
+  cursor: pointer;
 }

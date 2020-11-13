@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UserCard from "../UserCard";
+import UserCard from "../../UserCard";
 import "./index.css";
 
 const OfferCard = ({ offer }) => {

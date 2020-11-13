@@ -1,42 +1,47 @@
 import "./App.css";
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 
 /* Containers */
 import Home from "./containers/Home";
 import Offer from "./containers/Offer";
-import Signup from "./containers/Signup";
-import Login from "./containers/Login";
 
 /* Components */
 import Header from "./components/Header";
+import Modal from "./components/Share/Modal";
 
 function App() {
-  const [token, setToken] = useState(Cookie.get("token"));
+  const [token, setToken] = useState(Cookies.get("token"));
+  const [modal, setModal] = useState(null);
 
+  // Default timeout = session
+  Cookies.set("BackUrl", "https://lereacteur-vinted-api.herokuapp.com/");
+
+  // Fix timeout at one half hour (1/48 day) for authentication
+  const cookieTimeout = 1 / 48;
   const setUserToken = (token) => {
     if (token) {
       setToken(token);
-      Cookie.set("token", token, { expires: 1 / 48 }); // en jour => 1/48 = 1/2 heure
+      Cookies.set("token", token, { expires: cookieTimeout });
     } else {
       setToken(null);
-      Cookie.remove("token");
+      Cookies.remove("token");
     }
   };
 
   return (
     <Router>
-      <Header token={token} setUserToken={setUserToken} />
+      <Header setModal={setModal} token={token} setUserToken={setUserToken} />
+      <Modal
+        modal={modal}
+        setModal={setModal}
+        token={token}
+        setUserToken={setUserToken}
+      />
       <Switch>
         <Route path="/offer/:id">
           <Offer />
-        </Route>
-        <Route path="/login">
-          <Login setUserToken={setUserToken} />
-        </Route>
-        <Route path="/signup">
-          <Signup setUserToken={setUserToken} />
         </Route>
         <Route path="/">
           <Home />

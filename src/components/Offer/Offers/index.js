@@ -1,17 +1,26 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import axios from "axios";
 import OfferCard from "../OfferCard";
 import "./index.css";
 
-// TODO : regrouper les composants par domaine
-
 const getOffers = async (setOffers, setIsLoading) => {
-  // TODO faire try/catch
-  const response = await axios.get(
-    "https://lereacteur-vinted-api.herokuapp.com/offers"
-  );
-  setOffers(response.data.offers);
-  setIsLoading(false);
+  const url = Cookies.get("BackUrl") + "offers";
+  try {
+    const response = await axios.get(url);
+    setOffers(response.data.offers);
+    setIsLoading(false);
+  } catch (error) {
+    console.log(error.message);
+    if (error.response && error.response.data && error.response.data.message) {
+      alert(
+        "Le chargement est impossible pour la raison suivante : \n\n" +
+          error.response.data.message
+      );
+    } else {
+      alert("Une erreur bloque le chargement des données");
+    }
+  }
 };
 
 const Offers = () => {

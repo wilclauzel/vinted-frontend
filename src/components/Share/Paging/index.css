@@ -1,0 +1,28 @@
+.paging {
+  margin: 20px 0;
+  height: 55px;
+  background-color: #f7f3f3;
+  display: flex;
+  justify-content: space-between;
+}
+.paging > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page {
+  height: 55px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #9e9999;
+}
+.page:hover {
+  background-color: #e4e0e0;
+}
+.selected {
+  border: 1px solid #e4e0e0;
+  font-weight: 900;
+}

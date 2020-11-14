@@ -1,8 +1,42 @@
 .offers > div:first-of-type {
+  margin-top: 20px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid red; */
+  color: #999999;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 800;
+  padding-right: 10px;
+  cursor: pointer;
+}
+.offers > div:first-of-type span {
+  margin-right: 10px;
+}
+.offers-cards {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   align-content: space-between;
   flex-wrap: wrap;
-  /* border: 1px solid red; */
+}
+.offers-sorter {
+  position: relative;
+}
+.sort-criteria-selector {
+  height: 180px;
+  background-color: white; /*#f5f6f7 */
+  box-shadow: -1px -5px 5px 0px #999999;
+  position: absolute;
+  top: 25px;
+  right: -10px;
+}
+
+@media (max-width: 600px) {
+  .offers-cards {
+    box-sizing: border-box;
+    margin: 0;
+  }
 }

@@ -2,11 +2,16 @@ import React from "react";
 import Presentation from "../components/Presentation";
 import Offers from "../components/Offer/Offers";
 
-const Home = () => {
+const Home = ({ modal, refreshOffers, setRefreshOffers, searchCriteria }) => {
   return (
     <div>
-      <Presentation />
-      <Offers />
+      <Presentation modal={modal} />
+      <Offers
+        modal={modal}
+        searchCriteria={searchCriteria}
+        refreshOffers={refreshOffers}
+        setRefreshOffers={setRefreshOffers}
+      />
     </div>
   );
 };

@@ -1,0 +1,24 @@
+.price-criteria {
+  box-sizing: border-box;
+  padding: 25px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.price-criteria > div {
+  height: 50px;
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.price-criteria label {
+  color: #999999;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+}
+.price-criteria input {
+  margin-left: 0px;
+  border-bottom: 1px solid #999999;
+}

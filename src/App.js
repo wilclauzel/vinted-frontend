@@ -1,5 +1,15 @@
 import "./App.css";
 import { useState } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faSearch,
+  faGreaterThan,
+  faLessThan,
+  faCaretDown,
+  faTimes,
+  faSync,
+} from "@fortawesome/free-solid-svg-icons";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Cookies from "js-cookie";
 
@@ -14,6 +24,17 @@ import Modal from "./components/Share/Modal";
 function App() {
   const [token, setToken] = useState(Cookies.get("token"));
   const [modal, setModal] = useState(null);
+  const [searchCriteria, setSearchCriteria] = useState({});
+  const [refreshOffers, setRefreshOffers] = useState(true);
+
+  library.add(
+    faSearch,
+    faGreaterThan,
+    faLessThan,
+    faCaretDown,
+    faTimes,
+    faSync
+  );
 
   // Default timeout = session
   Cookies.set("BackUrl", "https://lereacteur-vinted-api.herokuapp.com/");
@@ -32,19 +53,34 @@ function App() {
 
   return (
     <Router>
-      <Header setModal={setModal} token={token} setUserToken={setUserToken} />
+      <Header
+        setModal={setModal}
+        token={token}
+        setUserToken={setUserToken}
+        searchCriteria={searchCriteria}
+        setSearchCriteria={setSearchCriteria}
+        setRefreshOffers={setRefreshOffers}
+      />
       <Modal
         modal={modal}
         setModal={setModal}
         token={token}
         setUserToken={setUserToken}
+        searchCriteria={searchCriteria}
+        setSearchCriteria={setSearchCriteria}
+        setRefreshOffers={setRefreshOffers}
       />
       <Switch>
         <Route path="/offer/:id">
           <Offer />
         </Route>
         <Route path="/">
-          <Home />
+          <Home
+            modal={modal}
+            searchCriteria={searchCriteria}
+            refreshOffers={refreshOffers}
+            setRefreshOffers={setRefreshOffers}
+          />
         </Route>
       </Switch>
     </Router>

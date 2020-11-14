@@ -46,6 +46,13 @@
   color: #111111;
   margin-bottom: 20px;
 }
+.seller-shortcut-link {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 .seller-shortcut button {
   width: 190px;
   height: 45px;
@@ -56,10 +63,66 @@
   color: white;
   background-color: #09b1ba;
 }
-.seller-shortcut a {
+.seller-shortcut p {
   color: #09b1ba;
   font-size: 14px;
   /* font-weight: 500; */
   line-height: 18px;
   text-decoration: none;
+  cursor: pointer;
+}
+@media (max-width: 1080px) {
+  .seller-shortcut {
+    left: 5%;
+    width: 300px;
+    height: 220px;
+  }
+  .seller-shortcut h2 {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 32.5px;
+    color: #111111;
+    margin-bottom: 10px;
+  }
+  .seller-shortcut-link {
+    height: 80px;
+  }
+}
+@media (max-width: 700px) {
+  .seller-shortcut {
+    left: 7%;
+    top: 70%;
+    width: 500px;
+    height: 130px;
+  }
+  .seller-shortcut h2 {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 28.5px;
+    color: #111111;
+    margin-bottom: 10px;
+  }
+  .seller-shortcut-link {
+    height: 80px;
+    width: 420px;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .seller-shortcut {
+    left: 2%;
+    width: 480px;
+  }
+  .seller-shortcut h2 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 26.5px;
+    color: #111111;
+    margin-bottom: 10px;
+  }
 }

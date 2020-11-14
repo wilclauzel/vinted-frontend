@@ -66,3 +66,16 @@
   color: #09b1ba;
   cursor: pointer;
 }
+@media (max-width: 900px) {
+  .login,
+  .signup {
+    /* margin-top: 182px; */
+    /* width: 350px;
+    height: 450px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center; */
+  }
+}

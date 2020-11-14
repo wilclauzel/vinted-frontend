@@ -70,3 +70,29 @@
   border-radius: 2px;
   background-color: #09b1ba;
 }
+@media (max-width: 900px) {
+  .offerdetail {
+    margin-top: 142px;
+  }
+  .offerdetail > div > div > img,
+  .offerdetail-data {
+    margin: 0 10px;
+    width: 340px;
+  }
+}
+@media (max-width: 900px) {
+  .offerdetail {
+    /* margin-top: 102px; */
+    /* width: 100vw; */
+    height: 100%;
+    /* background-color: #eaedee; */
+  }
+  .offerdetail > div {
+    flex-direction: column;
+  }
+  .offerdetail > div > div > img,
+  .offerdetail-data {
+    margin: 20px 10px;
+    width: 365px;
+  }
+}

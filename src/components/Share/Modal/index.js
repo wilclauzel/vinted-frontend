@@ -4,15 +4,25 @@ import Signup from "../../Authentication/Signup";
 import Header from "../../Header";
 import "./index.css";
 
-const Modal = ({ modal, setModal, token, setUserToken }) => {
+const Modal = ({
+  modal,
+  setModal,
+  token,
+  setUserToken,
+  searchCriteria,
+  setSearchCriteria,
+  setRefreshOffers,
+}) => {
   return (
     <div className={modal ? "modal displayed" : "hidden"}>
-      {/* <div>
-        <div className="wrapper">
-          <Logo setModal={setModal} />
-        </div>
-      </div> */}
-      <Header setModal={setModal} token={token} setUserToken={setUserToken} />
+      <Header
+        setModal={setModal}
+        token={token}
+        setUserToken={setUserToken}
+        searchCriteria={searchCriteria}
+        setSearchCriteria={setSearchCriteria}
+        setRefreshOffers={setRefreshOffers}
+      />
       {modal === "Login" && (
         <Login setUserToken={setUserToken} setModal={setModal} />
       )}

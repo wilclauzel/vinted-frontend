@@ -1,6 +1,65 @@
-.presentation img {
+.presentation {
   margin-top: 102px;
   width: 100vw;
   height: 645px;
+  background-color: blue;
+  position: relative;
+}
+.presentation img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.fond-dechire {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  background-image: url("https://www.vinted.fr/assets/seller-promotion/tear-cb30a259a261a54b1511a7088e72118801d10d300901837c655cb53add179620.svg");
+  background-position: bottom -1px right -1px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.seller-shortcut {
+  box-sizing: border-box;
+  width: 400px;
+  height: 260px;
+  position: absolute;
+  top: 30%;
+  left: 15%;
+  border-radius: 4px;
+  background-color: white;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.seller-shortcut h2 {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 42.5px;
+  color: #111111;
+  margin-bottom: 20px;
+}
+.seller-shortcut button {
+  width: 190px;
+  height: 45px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  color: white;
+  background-color: #09b1ba;
+}
+.seller-shortcut a {
+  color: #09b1ba;
+  font-size: 14px;
+  /* font-weight: 500; */
+  line-height: 18px;
+  text-decoration: none;
 }

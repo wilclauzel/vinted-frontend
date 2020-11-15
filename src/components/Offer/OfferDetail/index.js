@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { Carousel } from "react-responsive-carousel";
 import UserCard from "../../UserCard";
+
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./index.css";
 
-const getOffers = async (id, setOffer, setIsLoading) => {
+const getOffers = async (id, setOffer, setIsLoading, setImages) => {
   const url = Cookies.get("BackUrl") + "offer/" + id;
   try {
     const response = await axios.get(url);
     setOffer(response.data);
     setIsLoading(false);
+    const pictures = [];
+    response.data.product_pictures
+      ? response.data.product_pictures.forEach((item) => {
+          pictures.push(item);
+        })
+      : response.data.product_image &&
+        pictures.push(response.data.product_image);
+    setImages(pictures);
   } catch (error) {
     console.log(error.message);
     if (error.response && error.response.data && error.response.data.message) {
@@ -25,19 +36,52 @@ const getOffers = async (id, setOffer, setIsLoading) => {
 
 const OfferDetail = ({ id }) => {
   const [offer, setOffer] = useState();
+  const [images, setImages] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getOffers(id, setOffer, setIsLoading);
+    getOffers(id, setOffer, setIsLoading, setImages);
   }, [id]); // Specify id props to avoid error : React Hook useEffect has a missing dependency: 'xxx'
 
+  // const customRenderThumb = (children) =>
+  //   children.map((item) => {
+  //     return (
+  //       <img
+  //         key={item.asset_id}
+  //         src={item.secure_url}
+  //         alt={offer.product_name}
+  //       />
+  //     );
+  //   });
+  // const customRenderItem = (item, props) => (
+  //   <item.type {...item.props} {...props} />
+  // );
   return isLoading ? (
     <div>Chargement encours</div>
   ) : (
     <div className="offerdetail">
       <div className="wrapper">
         <div>
-          <img src={offer.product_image.secure_url} alt={offer.product_name} />
+          <Carousel
+            className="offer-images"
+            showStatus={false}
+            showThumbs={true}
+            showIndicators={true}
+            swipeable={true}
+            autoPlay={true}
+            // renderThumbs={customRenderThumb}
+            // renderItem={customRenderItem}
+          >
+            {images &&
+              images.map((item) => {
+                return (
+                  <div key={item.asset_id}>
+                    <img src={item.secure_url} alt={offer.product_name} />
+                    {/* <p className="legend"> Légende 1 </p> Pas de titre de photo ....*/}
+                  </div>
+                );
+              })}
+          </Carousel>
         </div>
         <div className="offerdetail-data">
           <div>

@@ -23,6 +23,13 @@
   background-color: #e4e0e0;
 }
 .selected {
-  border: 1px solid #e4e0e0;
+  border: 2px solid #e4e0e0;
   font-weight: 900;
+}
+
+@media (max-width: 600px) {
+  .page {
+    /* height: 55px; */
+    width: 45px;
+  }
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./index.css";
+import { faGreaterThan, faLessThan } from "@fortawesome/free-solid-svg-icons";
 
 const Paging = ({ currentPage, countPage, setRequestedPage }) => {
   const [pagePreviousValue, setPagePreviousValue] = useState(null);
@@ -52,7 +54,7 @@ const Paging = ({ currentPage, countPage, setRequestedPage }) => {
                 setRequestedPage(Number(pagePreviousValue));
             }}
           >
-            {"<"}
+            <FontAwesomeIcon icon={faLessThan} />
           </div>
         )}
         {page1Value && (
@@ -175,7 +177,7 @@ const Paging = ({ currentPage, countPage, setRequestedPage }) => {
             Number(pageNextValue) && setRequestedPage(Number(pageNextValue));
           }}
         >
-          {">"}
+          <FontAwesomeIcon icon={faGreaterThan} />
         </div>
       )}
     </div>

@@ -8,17 +8,24 @@
   padding-top: 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   /* background-color: red; */
 }
-.offerdetail > div > div > img,
+
+.offer-images,
 .offerdetail-data {
   margin: 0 40px;
   width: 365px;
-  height: 550px;
   box-sizing: border-box;
 }
-.offerdetail > div > div > img {
+.offer-images {
+  height: 550px;
+}
+.offerdetail-data {
+  height: 630px;
+}
+
+.offer-images > div > img {
   object-fit: cover;
 }
 .offerdetail-data {
@@ -82,17 +89,18 @@
 }
 @media (max-width: 900px) {
   .offerdetail {
-    /* margin-top: 102px; */
-    /* width: 100vw; */
     height: 100%;
-    /* background-color: #eaedee; */
   }
   .offerdetail > div {
     flex-direction: column;
+    align-items: center;
   }
-  .offerdetail > div > div > img,
+  .offer-images,
   .offerdetail-data {
-    margin: 20px 10px;
+    margin: 20px auto;
     width: 365px;
+  }
+  .offerdetail-data {
+    margin-top: 80px;
   }
 }

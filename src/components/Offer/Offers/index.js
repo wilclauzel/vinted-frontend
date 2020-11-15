@@ -24,7 +24,7 @@ const getOffers = async (
   sort,
   setRequestedPage
 ) => {
-  const pageSize = 8;
+  const pageSize = 10;
   let url =
     Cookies.get("BackUrl") +
     "offers?page=" +
@@ -64,6 +64,11 @@ const getOffers = async (
     setOffers(response.data.offers);
     setIsLoading(false);
     setRefreshOffers(false);
+
+    Cookies.set(
+      "offers-current-page",
+      nbPages < requestedPage ? 1 : requestedPage
+    );
     nbPages < requestedPage && setRequestedPage(1);
   } catch (error) {
     console.log(error.message);
@@ -79,12 +84,15 @@ const getOffers = async (
 };
 
 const Offers = ({ refreshOffers, setRefreshOffers, searchCriteria }) => {
+  const initialPage = Number(Cookies.get("offers-current-page"));
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [countPage, setCountPage] = useState(1);
   const [countResult, setCountResult] = useState(noneResult);
-  const [requestedPage, setRequestedPage] = useState(1);
+  const [requestedPage, setRequestedPage] = useState(
+    initialPage ? initialPage : 1
+  );
   const [displaySortCriteria, setDisplaySortCriteria] = useState(false);
   const [sort, setSort] = useState("");
 

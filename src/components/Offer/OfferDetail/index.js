@@ -34,7 +34,7 @@ const getOffers = async (id, setOffer, setIsLoading, setImages) => {
   }
 };
 
-const OfferDetail = ({ id }) => {
+const OfferDetail = ({ id, modal }) => {
   const [offer, setOffer] = useState();
   const [images, setImages] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -58,31 +58,41 @@ const OfferDetail = ({ id }) => {
   // );
   return isLoading ? (
     <div>Chargement encours</div>
+  ) : modal ? (
+    <></>
   ) : (
     <div className="offerdetail">
-      <div className="wrapper">
-        <div>
-          <Carousel
-            className="offer-images"
-            showStatus={false}
-            showThumbs={true}
-            showIndicators={true}
-            swipeable={true}
-            autoPlay={true}
-            // renderThumbs={customRenderThumb}
-            // renderItem={customRenderItem}
-          >
-            {images &&
-              images.map((item) => {
-                return (
-                  <div key={item.asset_id}>
-                    <img src={item.secure_url} alt={offer.product_name} />
-                    {/* <p className="legend"> Légende 1 </p> Pas de titre de photo ....*/}
-                  </div>
-                );
-              })}
-          </Carousel>
-        </div>
+      <div
+        className={
+          images && images.length > 0
+            ? "wrapper offerdetail-withimage "
+            : "wrapper offerdetail-withoutimage"
+        }
+      >
+        {images && (
+          <div>
+            <Carousel
+              className="offer-images"
+              showStatus={false}
+              showThumbs={true}
+              showIndicators={true}
+              swipeable={true}
+              autoPlay={true}
+              // renderThumbs={customRenderThumb}
+              // renderItem={customRenderItem}
+            >
+              {images &&
+                images.map((item) => {
+                  return (
+                    <div key={item.asset_id}>
+                      <img src={item.secure_url} alt={offer.product_name} />
+                      {/* <p className="legend"> Légende 1 </p> Pas de titre de photo ....*/}
+                    </div>
+                  );
+                })}
+            </Carousel>
+          </div>
+        )}
         <div className="offerdetail-data">
           <div>
             <p>
@@ -107,7 +117,11 @@ const OfferDetail = ({ id }) => {
             <p>{offer.product_description}</p>
             <UserCard
               username={offer.owner.account.username}
-              imageUrl={offer.owner.account.avatar.secure_url}
+              imageUrl={
+                offer.owner.account.avatar
+                  ? offer.owner.account.avatar.secure_url
+                  : null
+              }
             />
           </div>
           <button>Acheter</button>

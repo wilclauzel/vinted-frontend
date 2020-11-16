@@ -4,7 +4,7 @@ import "./index.css";
 const UserCard = ({ username, imageUrl, smallSize }) => {
   return (
     <div className={smallSize ? "user-card-small" : "user-card"}>
-      <img src={imageUrl} alt={username} />
+      {imageUrl && <img src={imageUrl} alt={username} />}
       <span>{username}</span>
     </div>
   );

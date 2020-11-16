@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 import "./index.css";
 
-const SORT_NONE = "";
-const SORT_BY_PRICE_ASC = "PriceAsc";
-const SORT_BY_PRICE_DESC = "PriceDesc";
+export const SORT_NONE = "";
+export const SORT_BY_PRICE_ASC = "PriceAsc";
+export const SORT_BY_PRICE_DESC = "PriceDesc";
 
 const SortCriteria = ({ sort, setSort }) => {
   const [isdefault, setIsDefault] = useState(sort === SORT_NONE);

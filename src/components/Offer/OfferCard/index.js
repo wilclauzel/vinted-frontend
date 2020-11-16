@@ -8,7 +8,11 @@ const OfferCard = ({ offer }) => {
     <div className="offer">
       <UserCard
         username={offer.owner.account.username}
-        imageUrl={offer.owner.account.avatar.secure_url}
+        imageUrl={
+          offer.owner.account.avatar
+            ? offer.owner.account.avatar.secure_url
+            : null
+        }
         smallSize={true}
       />
 

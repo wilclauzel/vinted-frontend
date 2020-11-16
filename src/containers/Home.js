@@ -7,7 +7,6 @@ const Home = ({ modal, refreshOffers, setRefreshOffers, searchCriteria }) => {
     <div>
       <Presentation modal={modal} />
       <Offers
-        modal={modal}
         searchCriteria={searchCriteria}
         refreshOffers={refreshOffers}
         setRefreshOffers={setRefreshOffers}

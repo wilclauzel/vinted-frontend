@@ -72,7 +72,7 @@ function App() {
       />
       <Switch>
         <Route path="/offer/:id">
-          <Offer />
+          <Offer modal={modal} />
         </Route>
         <Route path="/">
           <Home

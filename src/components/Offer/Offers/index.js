@@ -6,11 +6,13 @@ import axios from "axios";
 import OfferCard from "../OfferCard";
 import Paging from "../../Share/Paging";
 import SortCriteria from "../../Share/Criteria/SortCriteria";
+import {
+  SORT_BY_PRICE_ASC,
+  SORT_BY_PRICE_DESC,
+} from "../../Share/Criteria/SortCriteria";
 import "./index.css";
 
 const noneResult = "Aucun résultat";
-const SORT_BY_PRICE_ASC = "PriceAsc";
-const SORT_BY_PRICE_DESC = "PriceDesc";
 
 const getOffers = async (
   setOffers,

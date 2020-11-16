@@ -7,13 +7,18 @@
 .offerdetail > div {
   padding-top: 30px;
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   /* background-color: red; */
 }
-
+.offerdetail-withimage {
+  justify-content: space-between;
+}
+.offerdetail-withoutimage {
+  justify-content: center;
+}
 .offer-images,
 .offerdetail-data {
+  /* display: none; */
   margin: 0 40px;
   width: 365px;
   box-sizing: border-box;
@@ -100,7 +105,7 @@
     margin: 20px auto;
     width: 365px;
   }
-  .offerdetail-data {
-    margin-top: 80px;
+  .offer-images {
+    margin-bottom: 80px;
   }
 }

@@ -85,7 +85,13 @@ const getOffers = async (
   }
 };
 
-const Offers = ({ refreshOffers, setRefreshOffers, searchCriteria }) => {
+const Offers = ({
+  sort,
+  setSort,
+  refreshOffers,
+  setRefreshOffers,
+  searchCriteria,
+}) => {
   const initialPage = Number(Cookies.get("offers-current-page"));
   const [offers, setOffers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -96,7 +102,6 @@ const Offers = ({ refreshOffers, setRefreshOffers, searchCriteria }) => {
     initialPage ? initialPage : 1
   );
   const [displaySortCriteria, setDisplaySortCriteria] = useState(false);
-  const [sort, setSort] = useState("");
 
   useEffect(() => {
     getOffers(

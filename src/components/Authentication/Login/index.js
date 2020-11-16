@@ -24,7 +24,8 @@ const handleLogin = async (
     // In all cases, set updates and go home
     setUserToken(response.data.token);
     setModal(null);
-    history.push("/");
+    const lastPage = Cookies.get("lastPage");
+    history.push(lastPage ? lastPage : "/");
   } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {
       alert(

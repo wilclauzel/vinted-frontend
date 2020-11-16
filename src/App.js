@@ -26,6 +26,7 @@ function App() {
   const [modal, setModal] = useState(null);
   const [searchCriteria, setSearchCriteria] = useState({});
   const [refreshOffers, setRefreshOffers] = useState(true);
+  const [sort, setSort] = useState("");
 
   library.add(
     faSearch,
@@ -77,6 +78,8 @@ function App() {
         <Route path="/">
           <Home
             modal={modal}
+            sort={sort}
+            setSort={setSort}
             searchCriteria={searchCriteria}
             refreshOffers={refreshOffers}
             setRefreshOffers={setRefreshOffers}

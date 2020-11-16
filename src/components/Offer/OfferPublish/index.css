@@ -4,6 +4,12 @@
   background-color: #eaedee;
   border-bottom: 1px solid #eaedee; /* pour la marge inférieure*/
 }
+.offer-publish h2 {
+  padding-top: 50px;
+  font-size: 24px;
+  line-height: 20px;
+  font-weight: 400;
+}
 .offer-publish-databloc {
   margin: 30px 0;
   background-color: white;
@@ -81,8 +87,27 @@
   justify-content: center;
   align-items: center;
 }
-.offer-publish-databloc-pictures > div > img {
+.offer-publish-picture {
+  position: relative;
+}
+.offer-publish-picture > img {
   height: 200px;
+  position: relative;
+}
+.offer-publish-picture > div {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eaedee;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 .offer-publish-databloc-picture-add {

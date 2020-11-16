@@ -84,10 +84,19 @@ const OfferPublish = ({ modal, setModal, token }) => {
           <div className="offer-publish-databloc-pictures">
             <div>
               {picture ? (
-                <img
-                  src={URL.createObjectURL(picture)}
-                  alt="pré-visualisation"
-                />
+                <div className="offer-publish-picture">
+                  <img
+                    src={URL.createObjectURL(picture)}
+                    alt="pré-visualisation"
+                  />
+                  <div
+                    onClick={() => {
+                      setPicture(null);
+                    }}
+                  >
+                    X
+                  </div>
+                </div>
               ) : (
                 <div className="offer-publish-databloc-picture-add">
                   <label htmlFor="fileAdd">Ajoute une photo</label>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretDown,
@@ -19,6 +20,7 @@ const Header = ({
   setSearchCriteria,
   setRefreshOffers,
 }) => {
+  const history = useHistory();
   const [displayPriceCriteria, setDisplayPriceCriteria] = useState(false);
 
   const [minimalPrice, setMinimalPrice] = useState(
@@ -131,7 +133,14 @@ const Header = ({
                 </>
               )}
             </div>
-            <button className="header-button-sale">Vends tes articles</button>
+            <button
+              className="header-button-sale"
+              onClick={() => {
+                history.push("/offer/publish");
+              }}
+            >
+              Vends tes articles
+            </button>
           </div>
           <div className="search-line2-hidden">
             <div className="search search2-hidden">

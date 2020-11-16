@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 /* Containers */
 import Home from "./containers/Home";
 import Offer from "./containers/Offer";
+import Publish from "./containers/Publish";
 
 /* Components */
 import Header from "./components/Header";
@@ -38,7 +39,8 @@ function App() {
   );
 
   // Default timeout = session
-  Cookies.set("BackUrl", "https://lereacteur-vinted-api.herokuapp.com/");
+  // Cookies.set("BackUrl", "https://lereacteur-vinted-api.herokuapp.com/");
+  Cookies.set("BackUrl", "http://localhost:3001/");
 
   // Fix timeout at one half hour (1/48 day) for authentication
   const cookieTimeout = 1 / 48;
@@ -72,6 +74,10 @@ function App() {
         setRefreshOffers={setRefreshOffers}
       />
       <Switch>
+        <Route path="/offer/publish">
+          {/* {token ? <Redirect to="/dashboard" /> : <Publish />} */}
+          <Publish modal={modal} setModal={setModal} token={token} />
+        </Route>
         <Route path="/offer/:id">
           <Offer modal={modal} />
         </Route>

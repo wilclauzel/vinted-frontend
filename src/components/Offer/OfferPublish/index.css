@@ -1,0 +1,103 @@
+.offer-publish {
+  margin-top: 102px;
+  width: 100vw;
+  background-color: #eaedee;
+  border-bottom: 1px solid #eaedee; /* pour la marge inférieure*/
+}
+.offer-publish-databloc {
+  margin: 30px 0;
+  background-color: white;
+}
+.offer-publish-acceptExchange {
+  width: 100%;
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+}
+
+.offer-publish-acceptExchange input {
+  display: none;
+}
+.offer-publish-acceptExchange input + label {
+  margin: 20px 20px 20px 50%;
+  box-sizing: border-box;
+  display: inline-block;
+  border: solid 1px black;
+  width: 25px;
+  height: 25px;
+  background: white;
+  border-radius: 10%;
+}
+
+.offer-publish-acceptExchange input:checked + label {
+  background-color: #09b1ba;
+  border: solid 2px #09b1ba;
+  width: 25px;
+  height: 25px;
+}
+
+.offer-publish-acceptExchange input:checked + label:after {
+  box-sizing: border-box;
+  display: block;
+  content: "✓";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-top: 3px;
+  margin-left: 4px;
+  color: white;
+  font-weight: 900;
+}
+
+.offer-publish-submit {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+.offer-publish-submit button {
+  height: 50px;
+  padding: 10px 20px;
+  font-size: 20px;
+  color: white;
+  background-color: #09b1ba;
+  border: none;
+  border-radius: 4px;
+}
+.offer-publish-databloc-pictures {
+  margin: 30px 0;
+  background-color: white;
+  height: 250px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer-publish-databloc-pictures > div {
+  height: 230px;
+  width: 90%;
+  border: 1px solid #eaedee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer-publish-databloc-pictures > div > img {
+  height: 200px;
+}
+
+.offer-publish-databloc-picture-add {
+  cursor: pointer;
+  border: 3px solid #09b1ba;
+  font-weight: 700;
+  border-radius: 4px;
+  color: #09b1ba;
+  height: 40px;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.offer-publish-databloc-picture-add input {
+  display: none;
+  cursor: default;
+}

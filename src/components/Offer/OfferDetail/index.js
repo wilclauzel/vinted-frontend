@@ -71,6 +71,7 @@ const OfferDetail = ({ id, modal }) => {
       >
         {images && (
           <div>
+            {" "}
             <Carousel
               className="offer-images"
               showStatus={false}
@@ -82,9 +83,10 @@ const OfferDetail = ({ id, modal }) => {
               // renderItem={customRenderItem}
             >
               {images &&
-                images.map((item) => {
+                images.map((item, index) => {
+                  // console.log(item.asset_id);
                   return (
-                    <div key={item.asset_id}>
+                    <div key={item.asset_id ? item.asset_id : index}>
                       <img src={item.secure_url} alt={offer.product_name} />
                       {/* <p className="legend"> Légende 1 </p> Pas de titre de photo ....*/}
                     </div>

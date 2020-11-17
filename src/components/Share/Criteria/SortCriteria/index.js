@@ -33,7 +33,7 @@ const SortCriteria = ({ sort, setSort }) => {
   return (
     <div className="sort-criteria">
       <div>
-        <span>Aucun</span>
+        <span>Date création</span>
         <div>
           <input
             id="1"

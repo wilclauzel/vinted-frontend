@@ -107,22 +107,24 @@
   align-items: center;
   background-color: #eaedee;
   border-radius: 6px;
-  cursor: pointer;
 }
 
 .offer-publish-databloc-picture-add {
-  cursor: pointer;
   border: 3px solid #09b1ba;
   font-weight: 700;
   border-radius: 4px;
   color: #09b1ba;
   height: 40px;
   width: 180px;
+}
+.offer-publish-databloc-picture-add label {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .offer-publish-databloc-picture-add input {
   display: none;
-  cursor: default;
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Loader from "react-loader-spinner";
 import InputText from "../../Share/Input/InputText";
 import InputTextArea from "../../Share/Input/InputTextArea";
 import "./index.css";
@@ -41,7 +42,10 @@ const OfferPublish = ({ modal, setModal, token }) => {
       formData.append("color", color ? color : "");
       formData.append("picture", picture ? picture : "");
       const response = await axios.post(url, formData, {
-        headers: { authorization: "Bearer " + token },
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "multipart/form-data", //peut être nécessaire sur certains serveurs (express le reconnait)
+        },
       });
       if (response.data.product_name === title) {
         alert("Félicitation ! Votre anonce a été créée avec succès.");
@@ -172,7 +176,6 @@ const OfferPublish = ({ modal, setModal, token }) => {
               value={price}
               setValue={setPrice}
             />
-
             <div className="offer-publish-acceptExchange">
               <input
                 id="acceptExchange"
@@ -187,7 +190,16 @@ const OfferPublish = ({ modal, setModal, token }) => {
             </div>
           </div>
           <div className="offer-publish-submit">
-            <button type="submit">Ajouter</button>
+            {isPublishing ? (
+              <Loader
+                type="BallTriangle"
+                color="#09b1ba"
+                height={80}
+                width={80}
+              />
+            ) : (
+              <button type="submit">Ajouter</button>
+            )}
           </div>
         </form>
       </div>

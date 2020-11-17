@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Loader from "react-loader-spinner";
+
 import OfferCard from "../OfferCard";
 import Paging from "../../Share/Paging";
 import SortCriteria from "../../Share/Criteria/SortCriteria";
@@ -79,6 +81,16 @@ const getOffers = async (
         "Le chargement est impossible pour la raison suivante : \n\n" +
           error.response.data.message
       );
+    } else if (
+      error.response &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.message
+    ) {
+      alert(
+        "Le chargement est impossible pour la raison suivante : \n\n" +
+          error.response.data.error.message
+      );
     } else {
       alert("Une erreur bloque le chargement des données");
     }
@@ -119,7 +131,9 @@ const Offers = ({
   }, [requestedPage, refreshOffers, setRefreshOffers, searchCriteria, sort]);
 
   return isLoading ? (
-    <div className="offers wrapper">Chargement encours</div>
+    <div className="offers wrapper">
+      <Loader type="BallTriangle" color="#09b1ba" height={80} width={80} />
+    </div>
   ) : (
     <div className="offers wrapper">
       <div>

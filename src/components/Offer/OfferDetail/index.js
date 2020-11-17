@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 import { Carousel } from "react-responsive-carousel";
 import UserCard from "../../UserCard";
 
@@ -12,7 +14,7 @@ const getOffers = async (id, setOffer, setIsLoading, setImages) => {
   try {
     const response = await axios.get(url);
     setOffer(response.data);
-    setIsLoading(false);
+
     const pictures = [];
     response.data.product_pictures
       ? response.data.product_pictures.forEach((item) => {
@@ -21,12 +23,23 @@ const getOffers = async (id, setOffer, setIsLoading, setImages) => {
       : response.data.product_image &&
         pictures.push(response.data.product_image);
     setImages(pictures);
+    setIsLoading(false);
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     if (error.response && error.response.data && error.response.data.message) {
       alert(
         "Le chargement est impossible pour la raison suivante : \n\n" +
           error.response.data.message
+      );
+    } else if (
+      error.response &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.message
+    ) {
+      alert(
+        "Le chargement est impossible pour la raison suivante : \n\n" +
+          error.response.data.error.message
       );
     } else {
       alert("Une erreur bloque le chargement des données");
@@ -57,7 +70,7 @@ const OfferDetail = ({ id, modal }) => {
   //   <item.type {...item.props} {...props} />
   // );
   return isLoading ? (
-    <div>Chargement encours</div>
+    <Loader type="BallTriangle" color="#09b1ba" height={80} width={80} />
   ) : modal ? (
     <></>
   ) : (
@@ -126,7 +139,12 @@ const OfferDetail = ({ id, modal }) => {
               }
             />
           </div>
-          <button>Acheter</button>
+          <Link
+            to={{ pathname: "/payment", state: { basket: { offer } } }}
+            className="offerdetail-button"
+          >
+            <div>Acheter</div>
+          </Link>
         </div>
       </div>
     </div>

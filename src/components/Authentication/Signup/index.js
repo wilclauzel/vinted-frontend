@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
+import Loader from "react-loader-spinner";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -12,10 +13,12 @@ const handleSignup = async (
   history,
   username,
   email,
-  password
+  password,
+  setIsInProcess
 ) => {
   try {
     event.preventDefault();
+    setIsInProcess(true);
     const user = { username, email, password };
     const url = Cookies.get("BackUrl") + "user/signup";
     const response = await axios.post(url, user);
@@ -25,14 +28,26 @@ const handleSignup = async (
     // In all cases, set updates and go home
     setUserToken(response.data.token);
     setModal(null);
+    setIsInProcess(false);
     const lastPage = Cookies.get("lastPage");
     history.push(lastPage ? lastPage : "/");
   } catch (error) {
-    console.log(error.message);
+    setIsInProcess(false);
+    console.log(error);
     if (error.response && error.response.data && error.response.data.message) {
       alert(
         "Votre inscription est bloquée pour la raison suivante : \n\n" +
           error.response.data.message
+      );
+    } else if (
+      error.response &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.message
+    ) {
+      alert(
+        "Votre inscription est bloquée pour la raison suivante : \n\n" +
+          error.response.data.error.message
       );
     } else {
       alert("Une erreur bloque votre inscription");
@@ -45,6 +60,7 @@ const Signup = ({ setModal, setUserToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const [isInProcess, setIsInProcess] = useState(false);
 
   return (
     <div className="wrapper signup ">
@@ -58,7 +74,8 @@ const Signup = ({ setModal, setUserToken }) => {
             history,
             username,
             email,
-            password
+            password,
+            setIsInProcess
           );
         }}
       >
@@ -89,7 +106,11 @@ const Signup = ({ setModal, setUserToken }) => {
             setPassword(e.target.value);
           }}
         />
-        <button type="submit">S'inscrire</button>
+        {isInProcess ? (
+          <Loader type="BallTriangle" color="#09b1ba" height={80} width={80} />
+        ) : (
+          <button type="submit">S'inscrire</button>
+        )}
       </form>
       <p>
         Tu as déjà un compte ?

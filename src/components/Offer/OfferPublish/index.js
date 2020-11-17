@@ -27,6 +27,12 @@ const OfferPublish = ({ modal, setModal, token }) => {
       alert("Une mise à jour est déjà encours");
       return;
     }
+    if (!Number(price)) {
+      alert(
+        "Le prix saisi n'est pas un nombre. Vérifiez la valeur et/ou le format (00.00)."
+      );
+      return;
+    }
     setIsPublishing(true);
     try {
       const url = Cookies.get("BackUrl") + "offer/publish";
@@ -55,7 +61,8 @@ const OfferPublish = ({ modal, setModal, token }) => {
       setIsPublishing(false);
       history.push("/");
     } catch (error) {
-      console.log(error.message);
+      setIsPublishing(false);
+      console.log(error);
       if (
         error.response &&
         error.response.data &&
@@ -64,6 +71,16 @@ const OfferPublish = ({ modal, setModal, token }) => {
         alert(
           "La publication de l'annonce est impossible pour la raison suivante : \n\n" +
             error.response.data.message
+        );
+      } else if (
+        error.response &&
+        error.response.data &&
+        error.response.data.error &&
+        error.response.data.error.message
+      ) {
+        alert(
+          "La publication de l'annonce est impossible pour la raison suivante : \n\n" +
+            error.response.data.error.message
         );
       } else {
         alert("Une erreur bloque la publication de l'annonce");

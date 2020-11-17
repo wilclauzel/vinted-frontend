@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
+import Loader from "react-loader-spinner";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
@@ -11,9 +12,11 @@ const handleLogin = async (
   setUserToken,
   history,
   email,
-  password
+  password,
+  setIsInProcess
 ) => {
   try {
+    setIsInProcess(true);
     event.preventDefault();
     const userLogin = { email, password };
     const url = Cookies.get("BackUrl") + "user/login";
@@ -24,13 +27,26 @@ const handleLogin = async (
     // In all cases, set updates and go home
     setUserToken(response.data.token);
     setModal(null);
+    setIsInProcess(false);
     const lastPage = Cookies.get("lastPage");
     history.push(lastPage ? lastPage : "/");
   } catch (error) {
+    setIsInProcess(false);
+    console.log(error);
     if (error.response && error.response.data && error.response.data.message) {
       alert(
         "Votre connexion est bloquée pour la raison suivante : \n\n" +
           error.response.data.message
+      );
+    } else if (
+      error.response &&
+      error.response.data &&
+      error.response.data.error &&
+      error.response.data.error.message
+    ) {
+      alert(
+        "Votre connexion est bloquée pour la raison suivante : \n\n" +
+          error.response.data.error.message
       );
     } else {
       alert("Une erreur bloque votre connexion");
@@ -42,13 +58,22 @@ const Login = ({ setUserToken, setModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const [isInProcess, setIsInProcess] = useState(false);
 
   return (
     <div className="wrapper login">
       <h2>Se connecter</h2>
       <form
         onSubmit={(event) => {
-          handleLogin(event, setModal, setUserToken, history, email, password);
+          handleLogin(
+            event,
+            setModal,
+            setUserToken,
+            history,
+            email,
+            password,
+            setIsInProcess
+          );
         }}
       >
         <input
@@ -67,7 +92,11 @@ const Login = ({ setUserToken, setModal }) => {
             setPassword(e.target.value);
           }}
         />
-        <button type="submit">Se connecter</button>
+        {isInProcess ? (
+          <Loader type="BallTriangle" color="#09b1ba" height={80} width={80} />
+        ) : (
+          <button type="submit">Se connecter</button>
+        )}
       </form>
       <p>
         Pas encore de compte ?

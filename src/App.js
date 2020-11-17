@@ -17,6 +17,7 @@ import Cookies from "js-cookie";
 import Home from "./containers/Home";
 import Offer from "./containers/Offer";
 import Publish from "./containers/Publish";
+import Payment from "./containers/Payment";
 
 /* Components */
 import Header from "./components/Header";
@@ -75,6 +76,9 @@ function App() {
         setRefreshOffers={setRefreshOffers}
       />
       <Switch>
+        <Route path="/payment">
+          <Payment modal={modal} setModal={setModal} token={token} />
+        </Route>
         <Route path="/offer/publish">
           {/* {token ? <Redirect to="/dashboard" /> : <Publish />} */}
           <Publish modal={modal} setModal={setModal} token={token} />

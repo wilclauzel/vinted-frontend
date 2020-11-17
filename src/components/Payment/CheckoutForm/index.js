@@ -58,7 +58,7 @@ const CheckoutForm = ({ token }) => {
       };
 
       //4- Send payment
-      const response = await axios.post(url, data, {
+      await axios.post(url, data, {
         headers: {
           Authorization: "Bearer " + token,
           "Content-Type": "application/json",
@@ -67,8 +67,6 @@ const CheckoutForm = ({ token }) => {
       setPaymentInProcess(false);
       const lastPage = Cookies.get("lastPage");
       history.push(lastPage ? lastPage : "/");
-
-      //   console.log(response.data);
     } catch (error) {
       setPaymentInProcess(false);
       console.log(error);

@@ -24,7 +24,7 @@
   box-sizing: border-box;
 }
 .offer-images {
-  height: 550px;
+  /* height: 550px; */
 }
 .carousel .thumbs-wrapper {
   margin: 10px 0;

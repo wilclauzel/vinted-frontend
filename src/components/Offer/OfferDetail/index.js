@@ -16,7 +16,7 @@ const getOffers = async (id, setOffer, setIsLoading, setImages) => {
     setOffer(response.data);
 
     const pictures = [];
-    response.data.product_pictures
+    response.data.product_pictures && response.data.product_pictures.length > 0
       ? response.data.product_pictures.forEach((item) => {
           pictures.push(item);
         })
@@ -57,19 +57,6 @@ const OfferDetail = ({ id, modal }) => {
     getOffers(id, setOffer, setIsLoading, setImages);
   }, [id]); // Specify id props to avoid error : React Hook useEffect has a missing dependency: 'xxx'
 
-  // const customRenderThumb = (children) =>
-  //   children.map((item) => {
-  //     return (
-  //       <img
-  //         key={item.asset_id}
-  //         src={item.secure_url}
-  //         alt={offer.product_name}
-  //       />
-  //     );
-  //   });
-  // const customRenderItem = (item, props) => (
-  //   <item.type {...item.props} {...props} />
-  // );
   return isLoading ? (
     <Loader type="BallTriangle" color="#09b1ba" height={80} width={80} />
   ) : modal ? (

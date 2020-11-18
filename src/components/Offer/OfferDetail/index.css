@@ -26,6 +26,11 @@
 .offer-images {
   height: 550px;
 }
+.carousel .thumbs-wrapper {
+  margin: 10px 0;
+  text-align: center;
+}
+
 .offerdetail-data {
   height: 630px;
 }

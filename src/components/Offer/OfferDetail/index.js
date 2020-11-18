@@ -44,6 +44,7 @@ const getOffers = async (id, setOffer, setIsLoading, setImages) => {
     } else {
       alert("Une erreur bloque le chargement des données");
     }
+    setIsLoading(false);
   }
 };
 
@@ -116,28 +117,31 @@ const OfferDetail = ({ id, modal }) => {
                 currency: "EUR",
               })}
             </p>
-            {offer.product_details.map((feature, index) => {
-              const keys = Object.keys(feature);
-              return (
-                <div key={index} className="offerdetail-feature">
-                  <span>{keys[0]}</span>
-                  <span>{feature[keys[0]]}</span>
-                </div>
-              );
-            })}
+            {offer.product_details &&
+              offer.product_details.map((feature, index) => {
+                const keys = Object.keys(feature);
+                return (
+                  <div key={index} className="offerdetail-feature">
+                    <span>{keys[0]}</span>
+                    <span>{feature[keys[0]]}</span>
+                  </div>
+                );
+              })}
           </div>
           <div className="separator"></div>
           <div>
             <p>{offer.product_name}</p>
             <p>{offer.product_description}</p>
-            <UserCard
-              username={offer.owner.account.username}
-              imageUrl={
-                offer.owner.account.avatar
-                  ? offer.owner.account.avatar.secure_url
-                  : null
-              }
-            />
+            {offer.owner?.account && (
+              <UserCard
+                username={offer.owner.account.username}
+                imageUrl={
+                  offer.owner.account.avatar
+                    ? offer.owner.account.avatar.secure_url
+                    : null
+                }
+              />
+            )}
           </div>
           <Link
             to={{ pathname: "/payment", state: { basket: { offer } } }}

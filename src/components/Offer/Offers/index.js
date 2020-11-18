@@ -75,7 +75,7 @@ const getOffers = async (
     );
     nbPages < requestedPage && setRequestedPage(1);
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     if (error.response && error.response.data && error.response.data.message) {
       alert(
         "Le chargement est impossible pour la raison suivante : \n\n" +
@@ -94,6 +94,7 @@ const getOffers = async (
     } else {
       alert("Une erreur bloque le chargement des données");
     }
+    setIsLoading(false);
   }
 };
 

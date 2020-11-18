@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
+import Dropzone from "react-dropzone";
 import Loader from "react-loader-spinner";
 import InputText from "../../Share/Input/InputText";
 import InputTextArea from "../../Share/Input/InputTextArea";
 import "./index.css";
 
 const OfferPublish = ({ modal, setModal, token }) => {
-  const [picture, setPicture] = useState(null);
+  const [pictures, setPictures] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [brand, setBrand] = useState("");
@@ -33,6 +34,10 @@ const OfferPublish = ({ modal, setModal, token }) => {
       );
       return;
     }
+    if (pictures.length < 1) {
+      alert("Vous devez définir au moins une image.");
+      return;
+    }
     setIsPublishing(true);
     try {
       const url = Cookies.get("BackUrl") + "offer/publish";
@@ -46,7 +51,10 @@ const OfferPublish = ({ modal, setModal, token }) => {
       formData.append("brand", brand ? brand : "");
       formData.append("size", size ? size : "");
       formData.append("color", color ? color : "");
-      formData.append("picture", picture ? picture : "");
+      for (let i = 1; i <= pictures.length; i++) {
+        formData.append("picture" + i, pictures[i - 1]);
+      }
+
       const response = await axios.post(url, formData, {
         headers: {
           Authorization: "Bearer " + token,
@@ -104,32 +112,65 @@ const OfferPublish = ({ modal, setModal, token }) => {
         <form onSubmit={handleSubmit}>
           <div className="offer-publish-databloc-pictures">
             <div>
-              {picture ? (
-                <div className="offer-publish-picture">
-                  <img
-                    src={URL.createObjectURL(picture)}
-                    alt="pré-visualisation"
-                  />
-                  <div
-                    onClick={() => {
-                      setPicture(null);
-                    }}
-                  >
-                    X
-                  </div>
-                </div>
-              ) : (
-                <div className="offer-publish-databloc-picture-add">
-                  <label htmlFor="fileAdd">Ajoute une photo</label>
-                  <input
-                    id="fileAdd"
-                    type="file"
-                    onChange={(e) => {
-                      setPicture(e.target.files[0]);
-                    }}
-                  />
-                </div>
-              )}
+              <div className="offer-publish-picture-dropzone">
+                <Dropzone
+                  accept="image/*"
+                  onDrop={(selectedFiles) => {
+                    const newTab = [...pictures];
+                    let count = newTab.length;
+                    selectedFiles.forEach((file) => {
+                      if (count < 5) {
+                        newTab.push(file);
+                        count++;
+                      }
+                    });
+                    setPictures(newTab);
+                  }}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <section className="offer-publish-picture-dropzone-container">
+                      <div
+                        {...getRootProps({
+                          className: "offer-publish-picture-dropzone-dropzone",
+                        })}
+                      >
+                        <input {...getInputProps()} />
+                        <p>
+                          Déplacez vos images ici, ou cliquez pour en
+                          sélectionner (maximum 5)
+                        </p>
+                      </div>
+                      <aside className="offer-publish-picture-dropzone-thumbContainer">
+                        <div className="offer-publish-picture-dropzone-thumb">
+                          {pictures.map((file, index) => {
+                            return (
+                              <div
+                                className="offer-publish-picture-dropzone-thumbInner"
+                                key={index}
+                              >
+                                <img
+                                  src={URL.createObjectURL(file)}
+                                  className="offer-publish-picture-dropzone-img"
+                                  alt={file.name}
+                                />
+                                <div
+                                  onClick={() => {
+                                    const newTab = [...pictures];
+                                    newTab.splice(index, 1);
+                                    setPictures(newTab);
+                                  }}
+                                >
+                                  X
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </aside>
+                    </section>
+                  )}
+                </Dropzone>
+              </div>
             </div>
           </div>
           <div className="offer-publish-databloc">

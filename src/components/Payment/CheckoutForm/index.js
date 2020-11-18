@@ -58,15 +58,25 @@ const CheckoutForm = ({ token }) => {
       };
 
       //4- Send payment
-      await axios.post(url, data, {
+      const response = await axios.post(url, data, {
         headers: {
           Authorization: "Bearer " + token,
           "Content-Type": "application/json",
         },
       });
       setPaymentInProcess(false);
-      const lastPage = Cookies.get("lastPage");
-      history.push(lastPage ? lastPage : "/");
+
+      if (
+        response.data.paidAmount &&
+        Number.parseFloat(response.data.paidAmount).toFixed(2) ===
+          Number.parseFloat(netAmount).toFixed(2)
+      ) {
+        alert("Le paiement de votre commande a bien été réalisé.");
+        const lastPage = Cookies.get("lastPage");
+        history.push(lastPage ? lastPage : "/");
+      } else {
+        alert("Le paiement n'a pu être perçu. Vous devez recommencer.");
+      }
     } catch (error) {
       setPaymentInProcess(false);
       console.log(error);
@@ -76,7 +86,7 @@ const CheckoutForm = ({ token }) => {
         error.response.data.message
       ) {
         alert(
-          "Le paiement de la commande est impossible pour la raison suivante : \n\n" +
+          "Le paiement de votre commande est impossible pour la raison suivante : \n\n" +
             error.response.data.message
         );
       } else if (

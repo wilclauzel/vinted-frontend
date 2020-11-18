@@ -41,8 +41,8 @@ function App() {
 
   // Default timeout = session
   // Cookies.set("BackUrl", "https://lereacteur-vinted-api.herokuapp.com/");
-  Cookies.set("BackUrl", "http://localhost:3001/");
-  // Cookies.set("BackUrl", "https://reacteur-vinted.herokuapp.com/");
+  // Cookies.set("BackUrl", "http://localhost:3001/");
+  Cookies.set("BackUrl", "https://reacteur-vinted.herokuapp.com/");
 
   // Fix timeout at one half hour (1/48 day) for authentication
   const cookieTimeout = 1 / 48;

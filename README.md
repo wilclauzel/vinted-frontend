@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# Vinted frontend - React Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">
+<br>
+<img
+		width="450"
+		alt="vinted Clone - React App"
+		src="vinted-logo.png">
 
-## Available Scripts
+<br>
+<br>
+An application to manage sale offers management based on Vinted web site.
+<br>
+<br>
 
-In the project directory, you can run:
+</h1>
 
-### `yarn start`
+## General info
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project, carried out as part of the Le Reacteur training, aims to put into practice our knowledge in React on the frontend part.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The Vinted project is composed of 2 parts the backend and the frontend (application treated here).
+The latter is the website for managing offers.
 
-### `yarn test`
+## Overview
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This application is composed of 6 pages, 2 of which need to be authenticated (the creation and purchase of an offer).
 
-### `yarn build`
+The main page presents the list of the 10 first offers. At this level, the user can :
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- search or filter the offers and change the display sorting
+- navigate to other offers
+- consult the details of an offer and access the purchase screen
+- access the offer creation screen
+- authenticate with your user account
+- create a new user account
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- axios - version 0.21.0
+- React.js - version 17.0.1
 
-### `yarn eject`
+And the components :
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- js-cookie - version 2.2.1
+- stripe/react-stripe-js - version 1.1.2
+- react-dropzone - version 11.2.4
+- react-responsive-carousel - version 3.2.10
+- react-loader-spinner - version 3.1.14
+- react-router-dom - version 5.2.0
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Clone the repository then install the dependencies using `yarn`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Make sure nothing is running on your port 3000.
 
-## Learn More
+Use `yarn start` to launch the website.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can also visit the demo website :
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+https://eager-euclid-079c3a.netlify.app/
 
-### Code Splitting
+## Status
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Project is _finished_.
 
-### Analyzing the Bundle Size
+## Cautionary note
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project was carried out in a limited time with predefined guidelines. Also, this project may contain improvement points to comply with good practices.
 
-### Making a Progressive Web App
+## Inspiration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This projet is kind of simplified replica of [official vinted website](https://www.vinted.fr/).

@@ -144,7 +144,7 @@ header input {
   justify-content: center;
   cursor: pointer;
 }
-@media (max-width: 1080px) {
+@media (max-width: 1120px) {
   .header-button-sale,
   .header-buttons-connect > button,
   .header-buttons-connect > a > div {
@@ -154,7 +154,7 @@ header input {
     font-weight: 600;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .search-display {
     display: none;
   }
@@ -168,5 +168,12 @@ header input {
   }
   .search-criteria-detail {
     margin-left: 5px;
+  }
+}
+@media (max-width: 520px) {
+  .header-button-sale,
+  .header-buttons-connect > button,
+  .header-buttons-connect > a > div {
+    width: 80px;
   }
 }

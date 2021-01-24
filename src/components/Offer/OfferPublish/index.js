@@ -97,7 +97,7 @@ const OfferPublish = ({ modal, setModal, token }) => {
   };
 
   useEffect(() => {
-    if (!token) {
+    if (!token && !modal) {
       setModal("Login");
     }
   }, [modal, setModal, token]);

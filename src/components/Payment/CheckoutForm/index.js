@@ -40,6 +40,17 @@ const CheckoutForm = ({ token }) => {
       const stripeResponse = await stripe.createToken(cardElement, {
         name: "Id de l'acheteur",
       });
+
+      if (stripeResponse.error) {
+        setPaymentInProcess(false);
+        console.log(stripeResponse.error);
+        alert(
+          stripeResponse.error.message
+            ? stripeResponse.error.message
+            : "Votre paiement a été rejeté par Stripe."
+        );
+        return;
+      }
       const stripeToken = stripeResponse.token.id;
 
       //3- Create payment data

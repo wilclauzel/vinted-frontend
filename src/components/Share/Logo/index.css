@@ -1,0 +1,32 @@
+.logo {
+  /* width: 200px; */
+}
+.logo-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+.logo a:link {
+  text-decoration: none;
+}
+.logo a {
+  outline: none;
+  border-style: none;
+  cursor: pointer;
+}
+.logo-content a,
+.logo-content p {
+  font-family: cursive;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 900;
+  text-decoration: none;
+  color: #09b1ba;
+}
+@media (max-width: 1000px) {
+  .logo-content {
+    margin-right: 0px;
+  }
+}

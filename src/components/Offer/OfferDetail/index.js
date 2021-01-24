@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import Loader from "react-loader-spinner";
-import { Carousel } from "react-responsive-carousel";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 import UserCard from "../../UserCard";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./index.css";
 
 const getOffers = async (id, setOffer, setIsLoading, setImages) => {
@@ -16,13 +16,18 @@ const getOffers = async (id, setOffer, setIsLoading, setImages) => {
     setOffer(response.data);
 
     const pictures = [];
+    const pictures2 = [];
     response.data.product_pictures && response.data.product_pictures.length > 0
       ? response.data.product_pictures.forEach((item) => {
+          pictures2.push({
+            original: item.secure_url,
+            thumbnail: item.secure_url,
+          });
           pictures.push(item);
         })
       : response.data.product_image &&
         pictures.push(response.data.product_image);
-    setImages(pictures);
+    setImages(pictures2);
     setIsLoading(false);
   } catch (error) {
     console.log(error);
@@ -71,29 +76,16 @@ const OfferDetail = ({ id, modal }) => {
         }
       >
         {images && (
-          <div>
-            {" "}
-            <Carousel
-              className="offer-images"
-              showStatus={false}
-              showThumbs={true}
-              showIndicators={true}
-              swipeable={true}
+          <div className="offer-images">
+            <ImageGallery
+              items={images}
+              showPlayButton={false}
+              showFullscreenButton={false}
+              showNav={false}
+              useBrowserFullscreen={false}
+              thumbnailPosition="top"
               autoPlay={true}
-              // renderThumbs={customRenderThumb}
-              // renderItem={customRenderItem}
-            >
-              {images &&
-                images.map((item, index) => {
-                  // console.log(item.asset_id);
-                  return (
-                    <div key={item.asset_id ? item.asset_id : index}>
-                      <img src={item.secure_url} alt={offer.product_name} />
-                      {/* <p className="legend"> Légende 1 </p> Pas de titre de photo ....*/}
-                    </div>
-                  );
-                })}
-            </Carousel>
+            />
           </div>
         )}
         <div className="offerdetail-data">

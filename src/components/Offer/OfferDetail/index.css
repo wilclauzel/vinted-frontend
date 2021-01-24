@@ -8,7 +8,6 @@
   padding-top: 30px;
   display: flex;
   align-items: flex-start;
-  /* background-color: red; */
 }
 .offerdetail-withimage {
   justify-content: space-between;
@@ -18,27 +17,18 @@
 }
 .offer-images,
 .offerdetail-data {
-  /* display: none; */
   margin: 0 40px;
-  width: 365px;
   box-sizing: border-box;
 }
 .offer-images {
-  /* height: 550px; */
-}
-.carousel .thumbs-wrapper {
-  margin: 10px 0;
-  text-align: center;
-}
-
-.offerdetail-data {
+  background-color: #09b1ba;
+  border: 2px solid #09b1ba;
+  width: 695px;
   height: 630px;
 }
-
-.offer-images > div > img {
-  object-fit: cover;
-}
 .offerdetail-data {
+  height: 630px;
+  width: 365px;
   background-color: white;
   padding: 30px;
   display: flex;
@@ -53,7 +43,6 @@
 }
 .offerdetail-feature {
   width: 300px;
-  /* border: 1px solid red; */
   margin: 5px 0;
 
   display: grid;
@@ -94,20 +83,26 @@
   line-height: 18px;
   text-decoration: none;
 }
-.offerdetail-button > div {
+
+@media (max-width: 1250px) {
+  .offer-images {
+    width: 595px;
+  }
 }
+@media (max-width: 1150px) {
+  .offer-images {
+    width: 500px;
+  }
+}
+@media (max-width: 1050px) {
+  .offer-images {
+    width: 365px;
+  }
+}
+
 @media (max-width: 900px) {
   .offerdetail {
     margin-top: 142px;
-  }
-  .offerdetail > div > div > img,
-  .offerdetail-data {
-    margin: 0 10px;
-    width: 340px;
-  }
-}
-@media (max-width: 900px) {
-  .offerdetail {
     height: 100%;
   }
   .offerdetail > div {
@@ -120,6 +115,7 @@
     width: 365px;
   }
   .offer-images {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
+    height: 430px;
   }
 }

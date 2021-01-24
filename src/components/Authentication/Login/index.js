@@ -24,12 +24,9 @@ const handleLogin = async (
     if (!response.data.token) {
       alert("Votre authentification est incorrecte");
     }
-    // In all cases, set updates and go home
+    setIsInProcess(false);
     setUserToken(response.data.token);
     setModal(null);
-    setIsInProcess(false);
-    const lastPage = Cookies.get("lastPage");
-    history.push(lastPage ? lastPage : "/");
   } catch (error) {
     setIsInProcess(false);
     console.log(error);

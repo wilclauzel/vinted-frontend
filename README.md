@@ -1,15 +1,15 @@
-# Vinted frontend - React Application
+# Vinted Clone frontend - React Application creation test
 
 <h1 align="center">
 <br>
 <img
 		width="450"
 		alt="vinted Clone - React App"
-		src="vinted-logo.png">
+		src="vintedClone-logo.gif">
 
 <br>
 <br>
-An application to manage sale offers management based on Vinted web site.
+An application to manage sale offers management inspired on Vinted web site.
 <br>
 <br>
 
@@ -19,8 +19,10 @@ An application to manage sale offers management based on Vinted web site.
 
 This project, carried out as part of the Le Reacteur training, aims to put into practice our knowledge in React on the frontend part.
 
-The Vinted project is composed of 2 parts the backend and the frontend (application treated here).
+The Vinted Clone project is composed of 2 parts the backend and the frontend (application treated here).
 The latter is the website for managing offers.
+
+This project, with a pedagogical aim, should allow us to put forward our knowledge to employers.
 
 ## Overview
 
@@ -45,7 +47,7 @@ And the components :
 - js-cookie - version 2.2.1
 - stripe/react-stripe-js - version 1.1.2
 - react-dropzone - version 11.2.4
-- react-responsive-carousel - version 3.2.10
+- react-image-gallery - version 1.0.8
 - react-loader-spinner - version 3.1.14
 - react-router-dom - version 5.2.0
 

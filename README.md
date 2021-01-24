@@ -17,7 +17,7 @@ An application to manage sale offers management inspired on Vinted web site.
 
 ## General info
 
-This project, carried out as part of the Le Reacteur training, aims to put into practice our knowledge in React on the frontend part.
+This project, carried out as part of the [Le Reacteur](https://www.lereacteur.io/) training, aims to put into practice our knowledge in React on the frontend part.
 
 The Vinted Clone project is composed of 2 parts the backend and the frontend (application treated here).
 The latter is the website for managing offers.

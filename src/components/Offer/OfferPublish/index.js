@@ -213,7 +213,7 @@ const OfferPublish = ({ modal, setModal, token }) => {
             />
             <InputText
               label="Etat"
-              placeholder="ex: Neuf avec étaiquette"
+              placeholder="ex: Neuf avec étiquette"
               withBottomBorder={true}
               value={state}
               setValue={setState}

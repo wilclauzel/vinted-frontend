@@ -16,18 +16,17 @@ const getOffers = async (id, setOffer, setIsLoading, setImages) => {
     setOffer(response.data);
 
     const pictures = [];
-    const pictures2 = [];
     response.data.product_pictures && response.data.product_pictures.length > 0
       ? response.data.product_pictures.forEach((item) => {
-          pictures2.push({
+          pictures.push({
             original: item.secure_url,
             thumbnail: item.secure_url,
           });
-          pictures.push(item);
+          // originalClass: "offer-images-ImageGallery-image",
         })
       : response.data.product_image &&
         pictures.push(response.data.product_image);
-    setImages(pictures2);
+    setImages(pictures);
     setIsLoading(false);
   } catch (error) {
     console.log(error);

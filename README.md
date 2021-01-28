@@ -74,3 +74,11 @@ This project was carried out in a limited time with predefined guidelines. Also,
 ## Inspiration
 
 This projet is kind of simplified replica of [official vinted website](https://www.vinted.fr/).
+
+## 📈 Stats
+
+<br>
+<br> 
+<img align="center" src="https://wilclauzel-activitycounter.herokuapp.com/counter/GitHub/VintedC?kind=SVG"/>
+<br>
+<br>
